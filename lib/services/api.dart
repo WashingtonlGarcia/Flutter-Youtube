@@ -1,0 +1,3 @@
+const CHAVE_YOUTUBE_API="AIzaSyAFhXFJCB1K95YdZZadWPQ9jLJ8rObKDgo";
+const ID_CANAL="";
+const URL_BASE="";
