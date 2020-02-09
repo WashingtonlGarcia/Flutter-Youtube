@@ -1,11 +1,30 @@
 class Video {
-  String _id;
-  String _titulo;
-  String _imagem;
-  String _canal;
+  String id;
+  String titulo;
+  String imagem;
+  String canal;
 
-  Video(this._id, this._titulo, this._imagem, this._canal);
+  Video({this.id, this.titulo, this.imagem, this.canal});
 
+  /*static converterJson(Map<String,dynamic> json)
+  {
+    return Video(
+    id:json["id"]["videoId"],
+    titulo:json["snippet"]["title"],
+    imagem: json["snippet"]["thumbnails"]["high"]["url"],
+    canal:json["snippet"]["channelId"]
+    );
+
+  }*/
+
+  factory Video.fromJson(Map<String, dynamic> json) {
+    return Video(
+        id: json["id"]["videoId"],
+        titulo: json["snippet"]["title"],
+        imagem: json["snippet"]["thumbnails"]["high"]["url"],
+        canal: json["snippet"]["channelId"]);
+  }
+  /*
   set id(String value) {
     this._id = value;
   }
@@ -29,4 +48,13 @@ class Video {
   }
 
   String get canal => _canal;
+
+  Map<String, dynamic> jsonTo() {
+    return {
+      "id": _id,
+      "titulo":_titulo,
+      "imagem":_imagem,
+      "canal":_canal
+    };
+  }*/
 }
