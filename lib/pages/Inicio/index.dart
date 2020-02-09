@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../services/api.dart';
 
 class Inicio extends StatefulWidget {
   @override
@@ -11,7 +12,9 @@ class _InicioState extends State<Inicio> {
     return Container(
       color: Colors.white,
       child: Center(
-        child: Text("Inicio"),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center,crossAxisAlignment: CrossAxisAlignment.center,children: <Widget>[m=
+          RaisedButton(child: Text('Aperte'),onPressed: (){},)
+        ],),
       ),
     );
   }
