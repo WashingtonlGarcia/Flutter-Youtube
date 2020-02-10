@@ -33,15 +33,20 @@ class _InicioState extends State<Inicio> {
                         height: 300,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(video.imagem))),
+                          fit: BoxFit.none,
+                          image: NetworkImage(video.imagem),
+                        )),
                       ),
-                      ListTile(onTap: (){},title:Text(video.titulo) ,subtitle: Text(video.descricao),)
+                      ListTile(
+                        onTap: () {},
+                        title: Text(video.titulo),
+                        subtitle: Text(video.descricao),
+                      )
                     ],
                   );
                 },
                 separatorBuilder: (context, index) =>
-                  new  Divider(height: 20, color: Colors.transparent),
+                    new Divider(height: 20, color: Colors.transparent),
                 itemCount: snapshot.data.length,
               );
             }

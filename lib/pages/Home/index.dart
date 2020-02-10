@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube/controllers/CustomSearchDelegate.dart';
 import '../Inicio/index.dart';
 import '../EmAlta/index.dart';
 import '../Inscricoes/index.dart';
@@ -39,6 +40,15 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.white,
         actions: <Widget>[
           IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () async{
+              String res = await showSearch(
+                  context: context, delegate: CustomSearchDelegate());
+                  print(res);
+            },
+          ),
+          /*
+          IconButton(
             icon: Icon(Icons.video_call),
             onPressed: () {
               print("Video call");
@@ -55,12 +65,12 @@ class _HomeState extends State<Home> {
             onPressed: () {
               print("account circle");
             },
-          )
+          )*/
         ],
       ),
-      body:Container(
-        padding: EdgeInsets.all(16)
-        ,child:  pages[_indice],
+      body: Container(
+        padding: EdgeInsets.all(16),
+        child: pages[_indice],
       ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _indice,
