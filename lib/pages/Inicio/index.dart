@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube/models/Video.dart';
 import '../../services/api.dart';
+import 'package:flutter_youtube/flutter_youtube.dart';
 
 class Inicio extends StatefulWidget {
   String pesquisa;
@@ -29,22 +30,31 @@ class _InicioState extends State<Inicio> {
                 itemBuilder: (context, index) {
                   List<Video> videos = snapshot.data;
                   Video video = videos[index];
-                  return Column(
-                    children: <Widget>[
-                      Container(
-                        height: 300,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                          fit: BoxFit.none,
-                          image: NetworkImage(video.imagem),
-                        )),
-                      ),
-                      ListTile(
-                        onTap: () {},
-                        title: Text(video.titulo),
-                        subtitle: Text(video.descricao),
-                      )
-                    ],
+                  return GestureDetector(
+                    onTap: () {
+                        FlutterYoutube.playYoutubeVideoById(
+                            apiKey: CHAVE_YOUTUBE_API,
+                            videoId: video.id,
+                          autoPlay: true,
+                          fullScreen: true);
+                    },
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 300,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                            fit: BoxFit.none,
+                            image: NetworkImage(video.imagem),
+                          )),
+                        ),
+                        ListTile(
+                          onTap: () {},
+                          title: Text(video.titulo),
+                          subtitle: Text(video.descricao),
+                        )
+                      ],
+                    ),
                   );
                 },
                 separatorBuilder: (context, index) =>
