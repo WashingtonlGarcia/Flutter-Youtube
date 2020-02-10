@@ -11,85 +11,94 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _indice = 0;
+  int _indiceAtual = 0;
+  String _resultado = "";
+
   @override
-  List<Widget> pages = [
-    Inicio(),
-    EmAlta(),
-    Inscricoes(),
-    Biblioteca(),
-  ];
   Widget build(BuildContext context) {
+    List<Widget> telas = [
+      Inicio(_resultado),
+      EmAlta(),
+      Inscricoes(),
+      Biblioteca()
+    ];
+
     return Scaffold(
-      //backgroundColor: Colors.white,
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.grey, opacity: 1),
+        iconTheme: IconThemeData(color: Colors.grey),
+        backgroundColor: Colors.white,
         title: GestureDetector(
           onTap: () {
             setState(() {
-              _indice = 0;
+              _indiceAtual = 0;
             });
           },
           child: Image.asset(
             "images/logo.png",
             width: 98,
             height: 22,
-            alignment: Alignment.center,
           ),
         ),
-        backgroundColor: Colors.white,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () async{
-              String res = await showSearch(
+            onPressed: () async {
+              String res = await showSearch(  // Pegando a query, para fazer a pesquisa
                   context: context, delegate: CustomSearchDelegate());
-                  print(res);
+              setState(() {
+                _resultado = res;
+              });
+              print("resultado: digitado " + res);
             },
           ),
+
           /*
           IconButton(
-            icon: Icon(Icons.video_call),
-            onPressed: () {
-              print("Video call");
+            icon: Icon(Icons.videocam),
+            onPressed: (){
+              print("acao: videocam");
             },
           ),
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              print("search");
-            },
-          ),
+
           IconButton(
             icon: Icon(Icons.account_circle),
-            onPressed: () {
-              print("account circle");
+            onPressed: (){
+              print("acao: conta");
             },
-          )*/
+          )
+          */
         ],
       ),
       body: Container(
         padding: EdgeInsets.all(16),
-        child: pages[_indice],
+        child: telas[_indiceAtual],
       ),
       bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _indice,
+          currentIndex: _indiceAtual,
           onTap: (indice) {
             setState(() {
-              _indice = indice;
+              _indiceAtual = indice;
             });
           },
           type: BottomNavigationBarType.fixed,
           fixedColor: Colors.red,
           items: [
             BottomNavigationBarItem(
-                title: Text("Inicio"), icon: Icon(Icons.home)),
+                //backgroundColor: Colors.orange,
+                title: Text("Início"),
+                icon: Icon(Icons.home)),
             BottomNavigationBarItem(
-                title: Text("Em alta"), icon: Icon(Icons.whatshot)),
+                //backgroundColor: Colors.red,
+                title: Text("Em alta"),
+                icon: Icon(Icons.whatshot)),
             BottomNavigationBarItem(
-                title: Text("Inscrições"), icon: Icon(Icons.subscriptions)),
+                //backgroundColor: Colors.blue,
+                title: Text("Inscrições"),
+                icon: Icon(Icons.subscriptions)),
             BottomNavigationBarItem(
-                title: Text("Biblioteca"), icon: Icon(Icons.folder)),
+                //backgroundColor: Colors.green,
+                title: Text("Biblioteca"),
+                icon: Icon(Icons.folder)),
           ]),
     );
   }
