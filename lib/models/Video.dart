@@ -3,8 +3,8 @@ class Video {
   String titulo;
   String imagem;
   String canal;
-
-  Video({this.id, this.titulo, this.imagem, this.canal});
+  String descricao;
+  Video({this.id, this.titulo, this.imagem, this.canal,this.descricao});
 
   /*static converterJson(Map<String,dynamic> json)
   {
@@ -21,8 +21,9 @@ class Video {
     return Video(
         id: json["id"]["videoId"],
         titulo: json["snippet"]["title"],
+        descricao: json["snippet"]["description"],
         imagem: json["snippet"]["thumbnails"]["high"]["url"],
-        canal: json["snippet"]["channelId"]);
+        canal: json["snippet"]["channelTitle"]);
   }
   /*
   set id(String value) {

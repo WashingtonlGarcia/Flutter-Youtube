@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
   ];
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black87,
+      //backgroundColor: Colors.white,
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.grey, opacity: 1),
         title: GestureDetector(
@@ -58,7 +58,10 @@ class _HomeState extends State<Home> {
           )
         ],
       ),
-      body: pages[_indice],
+      body:Container(
+        padding: EdgeInsets.all(16)
+        ,child:  pages[_indice],
+      ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _indice,
           onTap: (indice) {
